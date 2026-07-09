@@ -34,3 +34,16 @@ app.get("/config", (req, res) => {
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
+app.post("/ask", async (req, res) => {
+  try {
+    const { message } = req.body;
+
+    // yahan tum process.env.OPENAI_API_KEY use karke external API call karoge
+
+    res.json({
+      reply: `You said: ${message}`
+    });
+  } catch (error) {
+    res.status(500).json({ error: "Something went wrong" });
+  }
+});
